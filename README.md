@@ -1,2 +1,2 @@
-# Kardia-Duplication_Finder-Research
+# Kardia-Duplication-Finder-Research
 Researching faster ways to find duplicates in a database.
