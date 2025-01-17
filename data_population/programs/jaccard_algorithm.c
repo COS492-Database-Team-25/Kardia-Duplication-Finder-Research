@@ -22,7 +22,7 @@ char* set_union(const char* S1[], const char* S2[])
 
     // Copy first string into union string
     strcpy(str_union, S1);
-    printf('%s', str_union);
+    printf(str_union);
 
     int n = strlen(S1);
     for (int i = 0; i <= n; i++)
