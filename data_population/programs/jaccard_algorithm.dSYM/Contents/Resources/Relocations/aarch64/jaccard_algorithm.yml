@@ -1,5 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     '/Users/colten.yeats/Documents/GitHub/testdata/data_population/programs/jaccard_algorithm'
-relocations:     []
-...
