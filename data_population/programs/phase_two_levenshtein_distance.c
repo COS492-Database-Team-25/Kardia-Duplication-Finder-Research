@@ -5,38 +5,40 @@ int main(int argc, char *argv[]) {
     int da[26];
     char *a = argv[1];
     char *b = argv[2];
+    int strlen_a = strlen(a);
+    int strlen_b = strlen(b);
     for (int i=0; i < 26; i++)
     {
         da[i] = 0;
     }
     // To use malloc the rest of the data will need to be changed to allow for it
-    //int* d[strlen(a)+2];
-    //for(int i = 0; i < strlen(a)+2; i++) {
-    //    d[i] = (int*)malloc((strlen(b)+2) * sizeof(int));
+    //int* d[strlen_a+2];
+    //for(int i = 0; i < strlen_a+2; i++) {
+    //    d[i] = (int*)malloc((strlen_b+2) * sizeof(int));
     //}
 
-    //int d = (int*)malloc((strlen(a)+2)*(strlen(b)+2)*sizeof(int));
-    int d[strlen(a)+4][strlen(b)+4];
+    //int d = (int*)malloc((strlen_a+2)*(strlen_b+2)*sizeof(int));
+    int d[strlen_a+4][strlen_b+4];
 
-    int max_distance = strlen(a) + strlen(b);
+    int max_distance = strlen_a + strlen_b;
     d[-1][-1] = max_distance;
 
-    for(int i = 0; i <= strlen(a); i++)
+    for(int i = 0; i <= strlen_a; i++)
     {
         d[i][-1] = max_distance;
         d[i][0] = i;
     }
-    for(int j = 0; j <= strlen(b); j++)
+    for(int j = 0; j <= strlen_b; j++)
     {
         d[-1][j] = max_distance;
         d[0][j] = j;
         
         
     }
-    for(int i = 0; i <= strlen(a); i++)
+    for(int i = 0; i <= strlen_a; i++)
     {
         printf("\n");
-        for(int j = 0; j <= strlen(b); j++)
+        for(int j = 0; j <= strlen_b; j++)
         {
             printf("%d",d[i][j]);
 
@@ -44,10 +46,10 @@ int main(int argc, char *argv[]) {
     }
     int cost;
     int minimum[4];
-    for(int i = 1; i <= strlen(a); i++)
+    for(int i = 1; i <= strlen_a; i++)
     {
         int db = 0;
-        for(int j = 1; j <= strlen(b); j++)
+        for(int j = 1; j <= strlen_b; j++)
         {
             int k = da[((int)b[j])-48];
             int l = db;
@@ -66,7 +68,7 @@ int main(int argc, char *argv[]) {
             minimum[2] = d[i-1][j] + 1;
             minimum[3] = d[k-1][l-1]+(i-k-1) + 1 + (j-l-1);
 
-            int min = strlen(a)+strlen(b);
+            int min = strlen_a+strlen_b;
             for(int k = 0; k < 4; k++) 
             {
 
@@ -84,24 +86,24 @@ int main(int argc, char *argv[]) {
     da[((int)a[i]-48)] = i;
     }
      printf("\n");
-    for(int i = 0; i <= strlen(a); i++)
+    for(int i = 0; i <= strlen_a; i++)
     {
         printf("\n");
-        for(int j = 0; j <= strlen(b); j++)
+        for(int j = 0; j <= strlen_b; j++)
         {
             printf("%d",d[i][j]);
 
         }
     }
      printf("\n");
-    //Need to be printed (d[[strlen(a)][strlen(b)]])
-    printf("%d", (d[strlen(a)][strlen(b)]));
+    //Need to be printed (d[[strlen_a][strlen_b]])
+    printf("%d", (d[strlen_a][strlen_b]));
 }
 /*
-for(int i = 0; i < strlen(a); i++)
+for(int i = 0; i < strlen_a; i++)
     {
         printf("\n");
-        for(int j = 0; j < strlen(b); j++)
+        for(int j = 0; j < strlen_b; j++)
         {
             printf("%d",d[i][j]);
 

@@ -115,14 +115,21 @@ double cosine_similarity_words(char *word1, char *word2, int n) {
     return dot_prod / (mag1 * mag2);
 }
 
-int main() {
-    char word1[] = "love";
-    char word2[] = "live";
-    int n = 2;  // We will use 2-grams (character bigrams)
+int main(int argc, char* argv[]) {
+    char* word1 = argv[1];
+    char* word2 = argv[2];
+    double similarity = 0;
+    double avg_similarity = 0;
+    double n_count = 3;
+    for(int n = 1; n <= n_count; n++){
 
-    double similarity = cosine_similarity_words(word1, word2, n);
+    similarity = cosine_similarity_words(word1, word2, n);
+    avg_similarity += similarity;
 
     printf("Cosine Similarity between \"%s\" and \"%s\": %lf\n", word1, word2, similarity);
+    }
+    avg_similarity = avg_similarity/n_count;
+    printf("Average Cosine Similarity between \"%s\" and \"%s\": %lf\n", word1, word2, avg_similarity);
 
     return 0;
 }
