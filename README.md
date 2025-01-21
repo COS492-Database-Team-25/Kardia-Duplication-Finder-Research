@@ -20,7 +20,7 @@ LightSys, the company behind the missionary fund-management application Kardia, 
 As stated above, we will be using improved versions of Levenshtein and Cosine Similarity to test their runtime compared to their original versions, already implemented into their coding language, Centrallix. To test these algorithms, we are using our own test database, found in the data tab of data_population. The aim of this database is to replicate a real account database as best as we can, complete with entries with typos and problematic edge cases.
 
 ## File Summary
-(insert link to repository_doc.md here)
+[Link to Repository Documentation][def]
 
 ## Team Members
 * Colten Yeats
@@ -29,3 +29,6 @@ As stated above, we will be using improved versions of Levenshtein and Cosine Si
 * Gabriel Wilson
 
 
+
+
+[def]: ~/additional_text_files/repository_doc.md
