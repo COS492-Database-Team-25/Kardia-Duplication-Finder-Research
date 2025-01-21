@@ -3,10 +3,12 @@
 #include <stdlib.h>
 int main(int argc, char *argv[]) {
     int da[26];
+  
     char *a = argv[1];
     char *b = argv[2];
     int strlen_a = strlen(a);
     int strlen_b = strlen(b);
+  
     for (int i=0; i < 26; i++)
     {
         da[i] = 0;
@@ -18,21 +20,23 @@ int main(int argc, char *argv[]) {
     //}
 
     //int d = (int*)malloc((strlen_a+2)*(strlen_b+2)*sizeof(int));
-    int d[strlen_a+4][strlen_b+4];
+    int d[strlen_a+4][strlen_b+4]; // 2d array that stores how many operations it took to get the a and b string of length i and j respectively
+
 
     int max_distance = strlen_a + strlen_b;
     d[-1][-1] = max_distance;
 
-    for(int i = 0; i <= strlen_a; i++)
+
+    for(int i = 0; i <= strlen_a; i++) // sets the first row to be one (insert) operation per letter in the a string
     {
         d[i][-1] = max_distance;
         d[i][0] = i;
     }
-    for(int j = 0; j <= strlen_b; j++)
+  
+    for(int j = 0; j <= strlen_b; j++) // sets the first column to be one (insert) per letter in the b string
     {
         d[-1][j] = max_distance;
         d[0][j] = j;
-        
         
     }
     for(int i = 0; i <= strlen_a; i++)
@@ -44,6 +48,7 @@ int main(int argc, char *argv[]) {
 
         }
     }
+
     int cost;
     int minimum[4];
     for(int i = 1; i <= strlen_a; i++)
