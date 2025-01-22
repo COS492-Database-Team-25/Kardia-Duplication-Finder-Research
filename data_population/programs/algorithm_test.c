@@ -8,6 +8,7 @@
 #include "jaccard_algorithm.h"
 
 FILE* read_csv(char* filename[]) {
+    printf("Reading file...\n");
     FILE* file = fopen(*filename, "r");
     if (!file) {
         perror("Failed to open file");
@@ -17,6 +18,7 @@ FILE* read_csv(char* filename[]) {
 }
 
 void parse_csv(FILE* file, char* data[60000][10]) {
+    printf("Parsing file...\n");
     char buffer[1028];
     int row = 0;
     int col = 0;
@@ -51,6 +53,7 @@ int main() {
         printf("%s ", data[0][col]);
     }
     printf("\n");
+    printf("Test completed! Freeing memory...\n");
 
     // Free allocated memory
     for (int row = 0; row < 60000; row++) {
