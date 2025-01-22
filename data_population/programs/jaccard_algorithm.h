@@ -131,11 +131,13 @@ double jaccard_sim(char* S1, char* S2)
     return jaccard_val;
 }
 
-int main() 
+double jaccard_algorithm_call() 
 {
     char str1[] = "Jack and Jill";
     char str2[] = "Jill & Jack";
 
-    printf("Fuzziness (Jaccard Similarity): %f\n", jaccard_sim(str1, str2));
-    return 0;
+    double j_similarity = jaccard_sim(str1, str2);
+    printf("Fuzziness (Jaccard Similarity): %f\n", j_similarity);
+
+    return j_similarity;
 }
