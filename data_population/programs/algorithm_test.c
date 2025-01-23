@@ -7,8 +7,9 @@
 // Algorithm Code
 #include "jaccard_algorithm.h"
 
-FILE* read_csv(char* filename[]) {
-    FILE* file = fopen(*filename, "r");
+FILE* read_csv(const char* filename) {
+    printf("Reading file: %s\n", filename);
+    FILE* file = fopen(filename, "r");
     if (!file) {
         perror("Failed to open file");
         exit(EXIT_FAILURE);
@@ -17,6 +18,7 @@ FILE* read_csv(char* filename[]) {
 }
 
 void parse_csv(FILE* file, char* data[60000][10]) {
+    printf("Parsing file...\n");
     char buffer[1028];
     int row = 0;
     int col = 0;
@@ -32,25 +34,76 @@ void parse_csv(FILE* file, char* data[60000][10]) {
     }
 }
 
+// COMMENT OUT WHEN BUG FIXING FILE READING
+void find_dupes(char* data[60000][10], const char* function_call) {
+    int row = 0;
+    for (int i=0; data[i]!= NULL; i++) {
+        for (int j=0; data[j]!= NULL; j++) {
+            if (data[i][0]!=data[j][0]) { // if ids are different
+                if (strcmp(function_call, "j") == 0) { // jaccard label
+                    data[0][9] = strdup("jaccard_pred"); //creates label on new column
+
+                    // runs jaccard, returns a boolean, 0.25 is the current max fuzziness allowed
+                    int jaccard_results = jaccard_sim(data[i], data[j], 0.25);
+
+                    if (jaccard_results == 0) { // 0 = no dupe found
+                        data[i][9] = data[j][0];
+                        data[j][9] = data[i][0];
+                    } else {                    // 1 = dupe found
+                        data[i][9] = "none";
+                        data[j][9] = "none";
+                    }
+                }
+            }
+        }
+    }
+}
+
+void create_csv(char* data[60000][10], const char* filename) {
+    printf("Using algorithms to find duplicates...");
+    int rows = 60000; // Find way to automate these later
+    int cols = 10;
+
+    FILE* file = fopen(filename, "w");
+    if (!file) {
+        perror("Failed to open file");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i=0; i < rows; i++) {
+        for (int j=0; j < cols; j++) {
+            fprintf(file, "%s", data[i][j]);
+            if (j < cols - 1) {
+                fprintf(file, ",");
+            }
+            fprintf(file, "\n");
+        }
+    }
+    
+    fclose(file);
+    printf("CSV file created! Can be found at: %s\n", filename);
+}
+//YOU CAN STOP COMMENTING OUT CODE HERE
+
 int main() {
-    // Read File
-    char* filename = "test_data_with_couples_and_typos_and_misclicks.csv";
-    FILE* file = read_csv(&filename);
+    // Read File (currently uses relative path)
+    const char* filename = "test_data_with_couples_and_typos_and_misclicks.csv";
+    FILE* file = read_csv(filename);
 
     // Allocate memory for the data array
     char* data[60000][10] = {0};
+
+    // Parse entries in file to 2D array data
     parse_csv(file, data);
     fclose(file);
 
     // call jaccard for test, save as duplicate_entries
+    find_dupes(data,"j");
 
     // make new csv file for duplicate_entries
+    create_csv(data, "jaccard_test_output.csv");
 
-    // Initial Test: Print first row
-    for (int col = 0; col < 10 && data[0][col] != NULL; col++) {
-        printf("%s ", data[0][col]);
-    }
-    printf("\n");
+    printf("Freeing memory...\n");
 
     // Free allocated memory
     for (int row = 0; row < 60000; row++) {
