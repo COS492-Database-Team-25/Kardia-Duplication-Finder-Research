@@ -3,16 +3,16 @@ import csv
 import time
 timer = 0
 timer_done = 'no'
-cosine_lib = CDLL('./cosine_similarity.so')
+cosine_lib = CDLL('./library.so')
 cosine_lib.cosine_similarity_interface.argtypes = [c_char_p, c_char_p]
 cosine_lib.cosine_similarity_interface.restype = c_double
-fuzzyness = .9
+fuzzyness = .8
 possablematches = 0
 data = []
 startingdata = []
 idtracker = 0
 idtracker_two = 0
-with open('test_data_with_couples_and_typos_and_missclicks copy.csv', mode='r') as file:
+with open('test_data_with_couples_and_typos_missclicks_and_emails.csv', mode='r') as file:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
@@ -21,24 +21,36 @@ with open('test_data_with_couples_and_typos_and_missclicks copy.csv', mode='r') 
                 person_one_last = row[3].strip()
                 person_one = person_one_first + " " + person_one_last
                 #print(person_one)
-                person_one = person_one.encode('utf-8')
+                #person_one = person_one.encode('utf-8')
                 startingdata.append(person_one)
         print('finding dups')
+        '''
         while timer_done == 'no':
           time.sleep(1)
           timer = timer + 1
+          if timer % 1000 == 1:
+                  print("Im still alive time: "+str(timer))
+        '''
+        if True:
           for person_one in startingdata:
-                  #print('finding dups')
-                  #print(person_one)
+                  idtracker_two = 0
                   idtracker += 1
-                  for person_two in data:
+                  #print(person_one)
+                  person_one = person_one.encode('utf-8')
+                  for person_two in startingdata:
+                          #print(person_two)
                           idtracker_two += 1
+                          person_two = person_two.encode('utf-8')
                           result = cosine_lib.cosine_similarity_interface(person_one, person_two)
-                          if float(result) > fuzzyness and idtracker != idtracker_two:
+                          if result > fuzzyness and idtracker != idtracker_two:
+                                  print(result)
                                   possablematches += 1
-                                  new_row = {"id_one":idtracker , "name_one":person_one,"name_two":person_two}
+                                  new_row = {"id_one":idtracker , "name_one":person_one,"id_two":idtracker_two,"name_two":person_two}
                                   data.append(new_row)
-                          idtracker_two = 0
+                                  #print(new_row)
+                
+                #idtracker = 0
+        print("tee hee")
         timer_done = "yes"
                                         #print(person_one,person_two)
         print(possablematches)

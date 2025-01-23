@@ -76,7 +76,7 @@ def main():
 
     print("id,given_name,preferred_name,surname,match")
     #random names
-    for i in range(50000):
+    for i in range(500):
         address = fake.address()
         first_name = fake.first_name()
         last_name = fake.last_name()
@@ -96,7 +96,7 @@ def main():
         
 
     #matches in first name
-    for i in range(5000):
+    for i in range(500):
         couple = "no"
         typo = "no"
         matching = "yes"
