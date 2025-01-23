@@ -117,25 +117,30 @@ char* intersection_multiset(char* S1, char* S2)
     return str_int_mult;
 }
 
-double jaccard_sim(char* S1, char* S2) 
+char* concat_names(char* row[10]) {
+    char* str[100]; 
+    strcpy(*str, row[1]);
+    strcpy(*str, " ");
+    strcpy(*str, row[3]);
+    return *str;
+}
+
+int jaccard_sim(char* r1[10], char* r2[10], double threshold) 
 {
+    char* S1 = concat_names(r1);
+    char* S2 = concat_names(r2);
+
     char* str_union = set_union(S1, S2);
     char* str_intersect = intersection_multiset(S1, S2);
 
-    double jaccard_val = (double)strlen(str_intersect) / strlen(str_union);
+    double jaccard_val = (double)1 - (strlen(str_intersect) / strlen(str_union));
 
     // Clean variables from memory after use
     free(str_intersect);
     free(str_union);
 
-    return jaccard_val;
-}
-
-int main() 
-{
-    char str1[] = "Jack and Jill";
-    char str2[] = "Jill & Jack";
-
-    printf("Fuzziness (Jaccard Similarity): %f\n", jaccard_sim(str1, str2));
-    return 0;
+    if (jaccard_val > threshold) {
+        return 0; //Is not a duplicate
+    }
+    return 1; // Is a duplicate
 }
