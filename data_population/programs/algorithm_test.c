@@ -8,7 +8,6 @@
 #include "jaccard_algorithm.h"
 
 FILE* read_csv(const char* filename) {
-    printf("Reading file: %s\n", filename);
     FILE* file = fopen(filename, "r");
     if (!file) {
         perror("Failed to open file");
@@ -18,7 +17,6 @@ FILE* read_csv(const char* filename) {
 }
 
 void parse_csv(FILE* file, char* data[60000][10]) {
-    printf("Parsing file...\n");
     char buffer[1028];
     int row = 0;
     int col = 0;
@@ -60,7 +58,6 @@ void find_dupes(char* data[60000][10], const char* function_call) {
 }
 
 void create_csv(char* data[60000][10], const char* filename) {
-    printf("Using algorithms to find duplicates...");
     int rows = 60000; // Find way to automate these later
     int cols = 10;
 
@@ -79,33 +76,36 @@ void create_csv(char* data[60000][10], const char* filename) {
             fprintf(file, "\n");
         }
     }
+    printf("CSV file created! Can be found at: %s\n", filename);
     
     fclose(file);
-    printf("CSV file created! Can be found at: %s\n", filename);
 }
 //YOU CAN STOP COMMENTING OUT CODE HERE
 
 int main() {
     // Read File (currently uses relative path)
     const char* filename = "test_data_with_couples_and_typos_and_misclicks.csv";
+    printf("Reading file: %s\n", filename);
     FILE* file = read_csv(filename);
 
     // Allocate memory for the data array
     char* data[60000][10] = {0};
 
     // Parse entries in file to 2D array data
+    printf("Parsing file...\n");
     parse_csv(file, data);
     fclose(file);
 
     // call jaccard for test, save as duplicate_entries
+    printf("Using algorithms to find duplicates...\n");
     find_dupes(data,"j");
 
     // make new csv file for duplicate_entries
+    printf("Creating new CSV to store data...\n");
     create_csv(data, "jaccard_test_output.csv");
 
-    printf("Freeing memory...\n");
-
     // Free allocated memory
+    printf("Freeing memory...\n");
     for (int row = 0; row < 60000; row++) {
         for (int col = 0; col < 10; col++) {
             free(data[row][col]);
