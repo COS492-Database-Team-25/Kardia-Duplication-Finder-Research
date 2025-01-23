@@ -28,6 +28,7 @@ with open('test_data_with_couples_and_typos_and_missclicks copy.csv', mode='r') 
           time.sleep(1)
           timer = timer + 1
           for person_one in startingdata:
+                  #print('finding dups')
                   #print(person_one)
                   idtracker += 1
                   for person_two in data:
