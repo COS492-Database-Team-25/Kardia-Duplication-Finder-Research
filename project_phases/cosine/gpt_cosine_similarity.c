@@ -115,7 +115,7 @@ double cosine_similarity_words(char *word1, char *word2, int n) {
     return dot_prod / (mag1 * mag2);
 }
 
-int main(int argc, char* argv[]) {
+__attribute__((visibility("default"))) int main(int argc, char* argv[]) {
     char* word1 = argv[1];
     char* word2 = argv[2];
     double similarity = 0;
@@ -131,5 +131,5 @@ int main(int argc, char* argv[]) {
     avg_similarity = avg_similarity/n_count;
     printf("Average Cosine Similarity between \"%s\" and \"%s\": %lf\n", word1, word2, avg_similarity);
 
-    return 0;
+    return avg_similarity;
 }
