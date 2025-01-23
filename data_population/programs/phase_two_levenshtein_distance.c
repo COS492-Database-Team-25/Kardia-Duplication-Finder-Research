@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-int main(int argc, char *argv[]) {
+__attribute__((visibality("default"))) int levenshtein(int argc, char *argv[]) {
     int da[26];
   
     char *a = argv[1];
