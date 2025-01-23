@@ -67,6 +67,7 @@ def swap(name, index,left_or_right):
 
 def main():
     data = []
+    data_to_be_saved = []
     number_of_typos = 0
     number_of_couples = 0
     number_of_missclicks = 0
@@ -88,8 +89,11 @@ def main():
         email = create_email(first_name,last_name,random_number2,random_number,couple)
         new_row = {"id":str(x),"given_name":first_name,"preferred_name":first_name,"surname":last_name,"email":email,
                    "address":address,"match":matching,"typo":typo,"couple":couple,"missclick":Is_missclick}
+        new_data = ['id',str(x),first_name,last_name,email,address]
+        data_to_be_saved.append(new_data)
         data.append(new_row)
         x+=1
+        
 
     #matches in first name
     for i in range(5000):
@@ -148,24 +152,28 @@ def main():
         email_typo = create_email(first_name_typo,last_name_typo,random_number2,random_number,couple)
         new_row = {"id":str(x),"given_name":first_name_typo,"preferred_name":first_name_typo,"surname":last_name_typo,"email":email_typo,"address":address,"match":matching,"typo":typo,"couple":couple,
                    "missclick":Is_missclick}
+        new_data = ['id',str(x),first_name_typo,last_name_typo,email,address]
+        data_to_be_saved.append(new_data)
         data.append(new_row)
         #print(str(x)+","+first_name_typo+","+first_name_typo, last_name_typo+","+last_name_typo+","+matching+","+typo)
         x+=1
         new_row = {"id":str(x),"given_name":first_name,"preferred_name":first_name,"surname":last_name,"email":email,"address":address,"match":matching,"typo":typo,"couple":couple,"missclick":Is_missclick}
         data.append(new_row)
+        new_data = ['id',str(x),first_name,last_name,email,address]
+        data_to_be_saved.append(new_data)
         x+=1
 
-
-
+    #print(data)
     print("Number of typos: ", number_of_typos)
     print("Number of couples: ", number_of_couples)
     print("Number of missclicks: ", number_of_missclicks)
+    print(data_to_be_saved)
     with open("test_data_with_couples_and_typos_missclicks_and_emails.csv", mode="w", newline="") as file:
         fieldnames = ["id","given_name","preferred_name","surname","email","address","match","typo","couple","missclick"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
 
         writer.writeheader()
         writer.writerows(data)
-
+    
     print("Data written to test_data_with_couples_and_typos.csv")
 main()
