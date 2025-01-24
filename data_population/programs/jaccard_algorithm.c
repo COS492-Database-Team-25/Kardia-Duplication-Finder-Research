@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-
+// Determines whether a given character is found in a given string
 int ele_pre(const char* S, char chr)
 {
     for (int i = 0; S[i] != '\0'; i++)
@@ -36,8 +36,6 @@ char* set_union(const char* S1, const char* S2)
             str_union[pos++] = S2[i];
 
     str_union[pos] = '\0'; // End string with null
-
-    printf("In Union: %s\n", str_union);
 
     return str_union;
 }
@@ -73,7 +71,6 @@ char* intersection(char* S1, char* S2)
         }
 
     str_intersect[pos] = '\0'; //End string with null
-    printf("In Intersect: %s\n", str_intersect);
     return str_intersect;
 }
 
@@ -118,7 +115,6 @@ char* intersection_multiset(char* S1, char* S2)
     }
 
     str_int_mult[pos] = '\0'; //End string with null
-    printf("In Normalized Intersect: %s\n", str_int_mult);
     return str_int_mult;
 }
 
@@ -130,24 +126,17 @@ char* concat_names(char* row[10]) {
     return *str;
 }
 
+__attribute__((visibility("default")))
 double jaccard_sim(char* S1, char* S2) 
 {
     char* str_union = set_union(S1, S2);
     char* str_intersect = intersection_multiset(S1, S2);
 
     double jaccard_val = (double)1 - ((double)strlen(str_intersect) / strlen(str_union));
-    printf("Jaccard Fuzziness: %f\n", jaccard_val);
 
     // Clean variables from memory after use
     free(str_intersect);
     free(str_union);
 
     return jaccard_val;
-}
-
-__attribute__((visibility("default")))
-double jaccard_similarity_interface(char* word1, char* word2) {
-    double similarity = 0;
-    similarity = jaccard_sim(word1, word2);
-    return similarity;
 }
