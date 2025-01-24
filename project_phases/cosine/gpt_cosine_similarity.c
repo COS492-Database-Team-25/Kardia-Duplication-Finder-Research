@@ -114,7 +114,18 @@ double cosine_similarity_words(char *word1, char *word2, int n) {
     }
     return dot_prod / (mag1 * mag2);
 }
-
+__attribute__((visibility("default")))
+double cosine_similarity_interface(char* word1, char* word2) {
+    double similarity = 0;
+    double avg_similarity = 0;
+    double n_count = 3;
+    for (int n = 1; n <= n_count; n++) {
+        similarity = cosine_similarity_words(word1, word2, n);
+        avg_similarity += similarity;
+    }
+    avg_similarity = avg_similarity / n_count;
+    return avg_similarity;
+}
 __attribute__((visibility("default"))) int main(int argc, char* argv[]) {
     char* word1 = argv[1];
     char* word2 = argv[2];
