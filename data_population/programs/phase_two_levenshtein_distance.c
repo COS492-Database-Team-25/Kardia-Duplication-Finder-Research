@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-__attribute__((visibality("default"))) int levenshtein(int argc, char *argv[]) {
+__attribute__((visibility("default"))) int levenshtein(int argc, char *argv[]) {
     int da[26];
   
     char *a = argv[1];
@@ -102,7 +102,8 @@ __attribute__((visibality("default"))) int levenshtein(int argc, char *argv[]) {
     }
      printf("\n");
     //Need to be printed (d[[strlen_a][strlen_b]])
-    printf("%d", (d[strlen_a][strlen_b]));
+    printf("%d\n", (d[strlen_a][strlen_b]));
+    return d[strlen_a][strlen_b];
 }
 /*
 for(int i = 0; i < strlen_a; i++)

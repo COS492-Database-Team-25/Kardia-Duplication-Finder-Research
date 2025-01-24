@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+
 int ele_pre(const char* S, char chr)
 {
     for (int i = 0; S[i] != '\0'; i++)
@@ -11,6 +12,7 @@ int ele_pre(const char* S, char chr)
     return 0; // Character was not found
 }
 
+// Gets the union of two strings
 char* set_union(const char* S1, const char* S2)
 {
     // Allocate memory where necessary
@@ -28,7 +30,7 @@ char* set_union(const char* S1, const char* S2)
         if (isalnum(S1[i]))
             str_union[pos++] = S1[i];
 
-    // Add characters from second string (only alphanumerical)
+    // Add characters from second string (only alphanumerical) (no recurring characters)
     for (int i = 0; S2[i] != '\0'; i++)
         if (isalnum(S2[i]) && !ele_pre(str_union, S2[i]))
             str_union[pos++] = S2[i];
@@ -40,6 +42,7 @@ char* set_union(const char* S1, const char* S2)
     return str_union;
 }
 
+//Two different function to grab the intersect: intersection() and intersection_multiset()
 // Works best without duplicate letters
 char* intersection(char* S1, char* S2)
 {
@@ -88,6 +91,7 @@ char* intersection_multiset(char* S1, char* S2)
     size_t pos = 0;
     int char_count_S2[256] = {0};
 
+    //Count up the frequency of characters in S2
     for (int i = 0; S2[i] != '\0'; i++) {
         if (isalnum(S2[i])) { // Only count alphanumeric characters
             char_count_S2[(unsigned char)S2[i]]++;
@@ -96,6 +100,7 @@ char* intersection_multiset(char* S1, char* S2)
 
     // Add characters from S1 that are in S2 (up to their count in S2)
     for (int i = 0; S1[i] != '\0'; i++) {
+        // Only count alphanumeric characters
         if (isalnum(S1[i]) && char_count_S2[(unsigned char)S1[i]] > 0) {
             if (pos + 1 >= max_size) {
                 max_size *= 2;
@@ -125,22 +130,24 @@ char* concat_names(char* row[10]) {
     return *str;
 }
 
-int jaccard_sim(char* r1[10], char* r2[10], double threshold) 
+double jaccard_sim(char* S1, char* S2) 
 {
-    char* S1 = concat_names(r1);
-    char* S2 = concat_names(r2);
-
     char* str_union = set_union(S1, S2);
     char* str_intersect = intersection_multiset(S1, S2);
 
-    double jaccard_val = (double)1 - (strlen(str_intersect) / strlen(str_union));
+    double jaccard_val = (double)1 - ((double)strlen(str_intersect) / strlen(str_union));
+    printf("Jaccard Fuzziness: %f\n", jaccard_val);
 
     // Clean variables from memory after use
     free(str_intersect);
     free(str_union);
 
-    if (jaccard_val > threshold) {
-        return 0; //Is not a duplicate
-    }
-    return 1; // Is a duplicate
+    return jaccard_val;
+}
+
+__attribute__((visibility("default")))
+double jaccard_similarity_interface(char* word1, char* word2) {
+    double similarity = 0;
+    similarity = jaccard_sim(word1, word2);
+    return similarity;
 }

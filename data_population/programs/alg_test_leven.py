@@ -3,9 +3,9 @@ import csv
 import time
 timer = 0
 timer_done = 'no'
-jaccard_lib = CDLL('./library.so')
-jaccard_lib.jaccard_similarity_interface.argtypes = [c_char_p, c_char_p]
-jaccard_lib.jaccard_similarity_interface.restype = c_double
+leven_lib = CDLL('./library_leven.so')
+leven_lib.levenshtein.argtypes = [c_char_p, c_char_p]
+leven_lib.levenshtein.restype = c_double
 fuzzyness = .2
 possablematches = 0
 data = []
@@ -41,7 +41,7 @@ with open('test_data_with_couples_and_typos_missclicks_and_emails_copy.csv', mod
                           #print(person_two)
                           idtracker_two += 1
                           person_two = person_two.encode('utf-8')
-                          result = jaccard_lib.jaccard_similarity_interface(person_one, person_two)
+                          result = leven_lib.levenshtein(person_one, person_two)
                           if result > fuzzyness and idtracker != idtracker_two:
                                   print(result)
                                   possablematches += 1
@@ -56,7 +56,7 @@ with open('test_data_with_couples_and_typos_missclicks_and_emails_copy.csv', mod
         print(possablematches)
         print(timer)
 
-        with open("matches.csv", mode="w", newline="") as file:
+        with open("matches_leven.csv", mode="w", newline="") as file:
                 fieldnames = ["id_one","name_one","id_two","name_two"]
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
 
