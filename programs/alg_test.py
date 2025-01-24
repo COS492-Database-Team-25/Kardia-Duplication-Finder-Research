@@ -3,7 +3,8 @@ import csv
 import time
 timer = 0
 timer_done = 'no'
-cosine_lib = CDLL('./library.so')
+temp = input("Enter which Algorithm you would like to use -> ")
+cosine_lib = CDLL('./'+temp+'library.so')
 cosine_lib.cosine_similarity_interface.argtypes = [c_char_p, c_char_p]
 cosine_lib.cosine_similarity_interface.restype = c_double
 fuzzyness = .8
@@ -12,7 +13,7 @@ data = []
 startingdata = []
 idtracker = 0
 idtracker_two = 0
-with open('test_data_with_couples_and_typos_missclicks_and_emails.csv', mode='r') as file:
+with open('../data/test_data_with_couples_and_typos_missclicks_and_emails.csv', mode='r') as file:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
