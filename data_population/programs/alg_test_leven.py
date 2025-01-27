@@ -11,7 +11,7 @@ def test():
         startingdata = []
         idtracker = 0
         idtracker_two = 0
-        with open('test_data_with_couples_and_typos_missclicks_and_emails_copy.csv', mode='r') as file:
+        with open('test_data_with_couples_and_typos_and_missclicks.csv', mode='r') as file:
                 reader = csv.reader(file)
                 header = next(reader)
                 for row in reader:
@@ -25,18 +25,22 @@ def test():
                         idtracker += 1
                         person_one = person_one.encode('utf-8')
                         for person_two in startingdata:
+                                print(idtracker)
+                                print(idtracker_two)
                                 idtracker_two += 1
                                 argv = (c_char_p * 3)()
                                 argv[0] = b"program"
                                 argv[1] = person_one
                                 argv[2] = person_two.encode('utf-8')
                                 argc = len(argv)
+                                print(person_one," ",person_two)
                                 result = cosine_lib.levenshtein(argc, argv)
                                 #print(result)
                                 if result > fuzzyness and idtracker != idtracker_two:
                                         possiblematches += 1
                                         new_row = {"id_one":idtracker , "name_one":person_one,"id_two":idtracker_two,"name_two":person_two}
                                         data.append(new_row)
+
                 
 
                 with open("matches.csv", mode="w", newline="") as file:
