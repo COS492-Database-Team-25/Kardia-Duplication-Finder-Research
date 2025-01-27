@@ -14,6 +14,7 @@
 
 
 # Jaccard Similarity
+This simple algorithm obtains its similarity value by dividing the length of the intersection of two strings against the length of the union of two strings.
 
 # Minkowski Distance
 

@@ -19,7 +19,7 @@ while True:
                 break
         elif temp == "l" or temp == "levenshtein":
                 lib = CDLL('./levenshteinlibrary.so')
-                lib_function = lib.levenshtein
+                lib_function = lib.main
                 lib_function.argtypes = [c_char_p, c_char_p]
                 lib_function.restype = c_double
                 break
