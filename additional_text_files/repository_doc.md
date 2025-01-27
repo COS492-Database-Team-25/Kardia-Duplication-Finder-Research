@@ -1,16 +1,29 @@
 # Documentation for This Repository
+**.vscode** - stores some files to help VS Code
 **additional_text_files** - stores other markdown files
-
-**data_population** - stores our test database and several test programs
-* *data* - stores database
-    * testdata_names.csv - the initial form of the database
-    * testdata_names.db - a usable database form of testdata_names
-* *programs* - stores programs to test with the database
-    * generate_names.py - uses Faker to create fake database entries, prints names for user to see
-    * jaccard_algorithm.c - implements the Jaccard algorithm (not working, determined as low priority)
-    * phase_two_levenshtein_distance.c - implements the Levenshtein edit distance algorithm
+    * algorithms.md - brief description of what each algorithm does, abandoned?
+    * repository_doc.md - brief description of each file in the repository (You are here!)
+    * running_tester.md - explains the testing process in a simplistic manner
+    * vm_process.md - explains how to use the LightSys VM and port forwarding, deprecated as we decided against using       LightSys's test database
+**data** - stores all data and data-generating code
+    * generate_names.py - a simple name generator
+    * generate_names_with_typos_missclicks_couples.py - a more complex name generator that accounts for edge cases such as misspellings, misclicks, and coupling
+    * matches.csv - an example of what the matches.csv from alg_test.py looks like (otherwise, I have no clue why it's here)
+    * test_data_with_couples_and_typos_and_missclicks.csv
+    * test_data_with_couples_and_typos_missclicks_and_emails.csv - this one is used for testing currently
+    * test_data_with_couples_and_typos.csv
+    * testdata_names.csv - made from old name generator, generate_names.py
+    * testdata_names.db - database version of testdata_names.csv
+**data_population** - ***DEPRECATED, DO NOT WORRY ABOUT***
+**programs** - stores programs which run and test algorithms
+    * *algorithm_test.dSYM/Contents* - a side effect of trying to debug algorithm_test.c using VS Code, leaving here in case someone wants to debug it
+    * cosine/cosine_similarity.c - returns the Cosine Similarity of two strings
+    * gestalt/gestalt_pattern_matching.c - returns the Similarity of two strings using Gestalt's Longest Common Subsequence
+    * jaccard/jaccard_algorithm.c - returns the Jaccard Similarity of two strings
+    * *levenshtein* - contains code for Levenshtein Edit Distance
+        * 
+**sql** - contains SQL queries which mock the duplicate-selection of LightSys's Kardia algorithm in the simplest way possible
     * Phase1.sql - runs a very simple query to search for duplicates in p_partner within LightSys's test database
-**project_phases** - contains SQL queries which mock the duplicate-selection of LightSys's Kardia algorithm in the simplest way possible
-* phase_one_reddy.sql - basic search query, similar results to Phase1.sql
-* phase_three_yeats.sql - an improved version of phase_one_reddy.sql that also searches in p_location within LightSys's test database
-* Phase3_contact_info.sql - an improved version of phase_one_reddy.sql that also searches in p_contact_info within LightSys's test database
+    * phase_one_reddy.sql - basic search query, similar results to Phase1.sql
+    * phase_three_yeats.sql - an improved version of phase_one_reddy.sql that also searches in p_location within LightSys's test database
+    * Phase3_contact_info.sql - an improved version of phase_one_reddy.sql that also searches in p_contact_info within LightSys's test database
