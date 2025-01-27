@@ -1,44 +1,63 @@
+# Please consult ../testdata/additional_text_files/running_tester.md for instructions on how to run this program
+
 from ctypes import CDLL, c_char_p, c_double
 import csv
 import time
 timer = 0
 timer_done = 'no'
+
+# Determines algorithm used by code
 while True:
         temp = input("Enter which Algorithm you would like to use -> ")
-        if temp == "c" or temp == "cosine":
+        if temp == "c" or temp == "cosine": # Cosine Similarity
                 lib = CDLL('./cosinelibrary.so')
                 lib_function = lib.cosine_similarity_interface
                 lib_function.argtypes = [c_char_p, c_char_p]
                 lib_function.restype = c_double
                 break
-        elif temp == "j" or temp == "jaccard":
+        elif temp == "j" or temp == "jaccard": # Jaccard Similarity
                 lib = CDLL('./jaccardlibrary.so')
                 lib_function = lib.jaccard_sim
                 lib_function.argtypes = [c_char_p, c_char_p]
                 lib_function.restype = c_double
                 break
-        elif temp == "l" or temp == "levenshtein":
+        elif temp == "l" or temp == "levenshtein": # Levenshtein Similarity
                 lib = CDLL('./levenshteinlibrary.so')
                 lib_function = lib.levenshtein
                 lib_function.argtypes = [c_char_p, c_char_p]
                 lib_function.restype = c_double
                 break
-        elif temp == "lcs" or temp == "g" or temp == "longest common subsequence" or temp == "gestalt":
+        elif temp == "lcs" or temp == "g" or temp == "longest common subsequence" or temp == "gestalt": # Longest Common Subsequence
                 lib = CDLL('./gestaltlibrary.so')
                 lib_function = lib.main
                 lib_function.argtypes = [c_char_p, c_char_p]
                 lib_function.restype = c_double
                 break
-        else:
+        else: # for wrong inputs
                 print("Not a valid input")
-       
-fuzzyness = .8
+
+while True:    
+        # take input for fuzziness   
+        fuzzyness = input("Choose a fuzziness value (Anywhere from 0.0 to 1.0) ->")
+        
+        # Make sure fuzzyness is a float
+        if not float(fuzzyness):
+                print("Not a valid input, please input a real number between 0.0 and 1.0")
+                continue
+        else:
+                fuzzyness = float(fuzzyness)
+
+        # Make sure fuzziness is between 0.0 and 1.0
+        if fuzzyness > 1.0 or fuzzyness < 0.0:
+                print("Number not in between 0.0 and 1.0, please input a real number between 0.0 and 1.0")
+        else:
+                break
 possablematches = 0
 data = []
 startingdata = []
 idtracker = 0
 idtracker_two = 0
-with open('../data/test_data_with_couples_and_typos_missclicks_and_emails.csv', mode='r') as file:
+with open('../data/test_data_10000.csv', mode='r') as file:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
