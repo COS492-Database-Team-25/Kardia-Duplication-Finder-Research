@@ -23,7 +23,7 @@ while True:
                 lib_function.argtypes = [c_char_p, c_char_p]
                 lib_function.restype = c_double
                 break
-        elif temp == "lcs" or temp == "g" or temp == "longest common substring" or temp == "gestalt":
+        elif temp == "lcs" or temp == "g" or temp == "longest common subsequence" or temp == "gestalt":
                 lib = CDLL('./gestaltlibrary.so')
                 lib_function = lib.main
                 lib_function.argtypes = [c_char_p, c_char_p]
@@ -31,7 +31,6 @@ while True:
                 break
         else:
                 print("Not a valid input")
-                temp = input("Enter which Algorithm you would like to use -> ")
        
 fuzzyness = .8
 possablematches = 0
