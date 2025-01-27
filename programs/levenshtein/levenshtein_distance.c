@@ -21,11 +21,11 @@ int main(int argc, char* argv[]) {
     for(int i=0; i <= strlen_a; i++) {
         d[i] = (int*)malloc((strlen_b+1) * sizeof(int));
         if(d[i] == NULL) {
-        printf("Memory allocation failed.\n");
-        return 1;
+            printf("Memory allocation failed.\n");
+            return 1;
         }
     }
-
+    
     int max_distance = strlen_a + strlen_b;
 
 
