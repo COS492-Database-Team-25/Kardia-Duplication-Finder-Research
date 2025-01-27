@@ -21,9 +21,16 @@
     * gestalt/gestalt_pattern_matching.c - returns the Similarity of two strings using Gestalt's Longest Common Subsequence
     * jaccard/jaccard_algorithm.c - returns the Jaccard Similarity of two strings
     * *levenshtein* - contains code for Levenshtein Edit Distance
-        * 
+        * levenshtein_distance.c - prototype for levenshtein that doesn't work
+        * levenshtein_no_malloc.c - working version of levenshtein code
+        * phase_two_levenshtein_distance_psuedocode.txt - pseudocode for levenshtein, shows thought process behind levenshtein code
+    * .gitattributes - an attempt to get matches.csv files stored in GitHub LFS (did not work)
+    * algtest.py - main algorithm tester code, uses CDLLs to run algorithms implemented in C
+    * algorithm_test.c - attempt to code algorithm tester in C, needs debugging
 **sql** - contains SQL queries which mock the duplicate-selection of LightSys's Kardia algorithm in the simplest way possible
     * Phase1.sql - runs a very simple query to search for duplicates in p_partner within LightSys's test database
     * phase_one_reddy.sql - basic search query, similar results to Phase1.sql
     * phase_three_yeats.sql - an improved version of phase_one_reddy.sql that also searches in p_location within LightSys's test database
     * Phase3_contact_info.sql - an improved version of phase_one_reddy.sql that also searches in p_contact_info within LightSys's test database
+.gitignore - tells git to ignore stacked changes
+README.md - introduction to project

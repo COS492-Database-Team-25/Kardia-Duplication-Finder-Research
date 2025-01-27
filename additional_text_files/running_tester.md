@@ -19,7 +19,7 @@ We used GCC to compile the code into a library.so file the alg_test.py code can 
 **NOTE:** Please make sure you are typing this command in the right area in the repository. You should be in the programs directory, which is linked to testdata.
 
 If you don't want to go through all the work to just use the function, here's all four of the commands here:
-* l: gcc -shared -o levenshteinlibrary.so -fPIC levenshtein/levenshtein_distance.c -lm
+* l: gcc -shared -o levenshteinlibrary.so -fPIC levenshtein/levenshtein_no_malloc.c -lm
 * c: gcc -shared -o cosinelibrary.so -fPIC cosine/cosine_similarity.c -lm
 * j: gcc -shared -o jaccardlibrary.so -fPIC jaccard/jaccard_algorithm.c -lm
 * g/lcs: gcc -shared -o gestaltlibrary.so -fPIC gestalt/gestalt_pattern_matching.c -lm
@@ -38,6 +38,9 @@ After the "tee hee" print message is the real results.
 The top number is the number of matches found by the algorithm. These matches can be looked at in detail in the matches.csv file that is generated from the tester.
 
 The bottom number is the amount of time it takes for the algorithm to search through a database. As far as I am aware, this function does not work, so unfortunately you have to time it the old-fashioned way.
+
+## Step 5: Cleaning Up
+To avoid the output files making any merge conflicts, **please delete matches.csv and any library.so file when you're done collecting results.** You will be testing some large files, so expect the matches.csv file to be too large for GitHub to handle. It's also nice to have a clean-looking repository.
 
 I hope this file helps you understand how our tester works. Happy testing!
 - *Colten Yeats*
