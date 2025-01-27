@@ -15,7 +15,6 @@
 
 # Jaccard Similarity
 
-
 # Minkowski Distance
 
 # Gestalt Pattern Matching
