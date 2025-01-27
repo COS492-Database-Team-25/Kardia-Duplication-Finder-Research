@@ -126,29 +126,17 @@ char* concat_names(char* row[10]) {
     return *str;
 }
 
-<<<<<<< HEAD:programs/jaccard/jaccard_algorithm.h
 __attribute__((visibility("default")))
 double jaccard_sim(char* S1, char* S2) 
-=======
-double jaccard_sim(char* S1, char* S2, double threshold) 
->>>>>>> 6d409c6 (fix jaccard file):programs/jaccard/jaccard_algorithm.c
 {
     char* str_union = set_union(S1, S2);
     char* str_intersect = intersection_multiset(S1, S2);
 
-<<<<<<< HEAD:programs/jaccard/jaccard_algorithm.h
-    double jaccard_val = (double)1 - ((double)strlen(str_intersect) / strlen(str_union));
-=======
     double jaccard_val = (double)strlen(str_intersect) / strlen(str_union);
->>>>>>> 6d409c6 (fix jaccard file):programs/jaccard/jaccard_algorithm.c
 
     // Clean variables from memory after use
     free(str_intersect);
     free(str_union);
 
-<<<<<<< HEAD:programs/jaccard/jaccard_algorithm.h
-    return jaccard_val;
-=======
     return jaccard_val; // Return Jaccard Similarity
->>>>>>> 6d409c6 (fix jaccard file):programs/jaccard/jaccard_algorithm.c
 }

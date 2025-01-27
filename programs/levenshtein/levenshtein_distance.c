@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 // Swap these two functions as well as the print/return statement to use arm64 vs m1
-//__attribute__((visibality("default"))) int levenshtein(int argc, char *argv[]) {
-int main(int argc, char* argv[]) {
+__attribute__((visibality("default"))) int levenshtein(int argc, char *argv[]) {
+//int main(int argc, char* argv[]) {
 
   
     char *a = argv[1];
