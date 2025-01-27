@@ -125,22 +125,16 @@ char* concat_names(char* row[10]) {
     return *str;
 }
 
-int jaccard_sim(char* r1[10], char* r2[10], double threshold) 
+double jaccard_sim(char* S1, char* S2, double threshold) 
 {
-    char* S1 = concat_names(r1);
-    char* S2 = concat_names(r2);
-
     char* str_union = set_union(S1, S2);
     char* str_intersect = intersection_multiset(S1, S2);
 
-    double jaccard_val = (double)1 - (strlen(str_intersect) / strlen(str_union));
+    double jaccard_val = (double)strlen(str_intersect) / strlen(str_union);
 
     // Clean variables from memory after use
     free(str_intersect);
     free(str_union);
 
-    if (jaccard_val > threshold) {
-        return 0; //Is not a duplicate
-    }
-    return 1; // Is a duplicate
+    return jaccard_val; // Return Jaccard Similarity
 }
