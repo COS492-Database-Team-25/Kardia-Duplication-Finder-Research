@@ -76,7 +76,7 @@ def main():
 
     print("id,given_name,preferred_name,surname,match")
     #random names
-    for i in range(8000):
+    for i in range(24000):
         address = fake.address()
         first_name = fake.first_name()
         last_name = fake.last_name()
@@ -96,7 +96,7 @@ def main():
         
 
     #matches in first name
-    for i in range(1000):
+    for i in range(3000):
         couple = "no"
         typo = "no"
         matching = "yes"
@@ -168,7 +168,7 @@ def main():
     print("Number of couples: ", number_of_couples)
     print("Number of missclicks: ", number_of_missclicks)
     print(data_to_be_saved)
-    with open("test_data_10000.csv", mode="w", newline="") as file:
+    with open("test_data_30000.csv", mode="w", newline="") as file:
         fieldnames = ["id","given_name","preferred_name","surname","email","address","match","typo","couple","missclick"]
         writer = csv.DictWriter(file, fieldnames=fieldnames)
 
