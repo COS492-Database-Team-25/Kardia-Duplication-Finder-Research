@@ -41,12 +41,10 @@ double gestalt(char* word1, char* word2) {
 
     // The LCS length
     int lcs_length = lcs[len1][len2];
-    printf("LCS Length: %d\n", lcs_length);
 
     // Calculate the similarity score
     int max_length = (len1 > len2) ? len1 : len2;
     double similarity_score = (double)lcs_length / max_length;
-    printf("Similarity Score: %.2f\n", similarity_score);
 
     return similarity_score;
 }

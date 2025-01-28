@@ -1,10 +1,10 @@
-Technical Document: List of Program Files
+# Technical Document: List of Program Files
 
-1. Overview
+## 1. Overview
 
 This document provides a comprehensive list of program files, their functions, and their interdependencies. It is designed to assist developers, maintainers, and users in understanding the structure and purpose of each file within the program.
 
-2. Directory Structure
+## 2. Directory Structure
 
 KARDIA-DUPLICATION-FINDER-RESEARCH/
 |- additional_text_files/
@@ -34,61 +34,61 @@ KARDIA-DUPLICATION-FINDER-RESEARCH/
 |- .gitignore
 |- README.md
 
-3. File Descriptions
+## 3. File Descriptions
 
-data files (data/)
+### data files (data/)
 
-generate_names_with_typos_misclicks_couples.py
+**generate_names_with_typos_misclicks_couples.py**
 
 Function: Creates a csv file including first and last names, contact information, address, and wether or not it is a duplicate entry. If it is a duplicate entry it also includes the type of duplicate a typo, misclick, or swapped order of couples names. These csv files are to be used for running alg_test.py.
 
 Dependencies: None
 
-generate_names.py
+**generate_names.py**
 
 Function: A much simpler version of generate_names_with_typos_misclicks_couples.py only includes first and last names with some duplicates.
 
 Dependencies: None
 
-algorithm programs (programs/)
+### algorithm programs (programs/)
 
-alg_test.py
+**alg_test.py**
 
 Function: Allows you to run all algorithms see running_tester.md
 
 Dependencies: A csv file created from generate_names_with_typos_misclicks_couples.py
 
-cosine_similarity.c
+**cosine_similarity.c**
 
 Function: Takes the cosine similarity of two given words 3 seperate times with different variations of linked characters.
 
 Dependencies: alg_test.py
 
-gestalt_pttern_matching.c
+**gestalt_pttern_matching.c**
 
 Function: Finds the most common subsequence of two strings.
 
 Dependencies: alg_test.py
 
-jaccard_algorithm.c
+**jaccard_algorithm.c**
 
 Function: Takes the intercestion of the two strings divided by the union.
 
 Dependencies: alg_test.py
 
-levenshtein_no_malloc.c
+**levenshtein_no_malloc.c**
 
 Function: Finds the amount of insertions, deleations, or substitutions needed to make two strigs similar.
 
 Dependencies: alg_test.py
 
-Sql Files (sql/)
+### Sql Files (sql/)
 
 **Tentative to stay may not be needed anymore**
 
-4. File Interdependencies
+## 4. File Interdependencies
 
-main.py
+**main.py**
 
 Depends on:
 
@@ -100,19 +100,19 @@ test_main.py
 
 Depends on:
 
-main.py: For testing its functionalities.
+main.py:For testing its functionalities.
 
-test_utils.py
+**test_utils.py**
 
 Depends on:
 
 utils.py: For testing its utilities.
 
-5. Version Control
+## 5. Version Control
 
 Ensure all changes to files are tracked using version control (e.g., Git). Each file should have clear commit messages detailing modifications.
 
-6. Best Practices
+## 6. Best Practices
 
 File Naming: Use descriptive names that reflect the file's purpose.
 

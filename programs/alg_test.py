@@ -32,7 +32,7 @@ def test():
                         break
                 elif temp == "lcs" or temp == "g" or temp == "longest common subsequence" or temp == "gestalt": # Longest Common Subsequence
                         lib = CDLL('./gestaltlibrary.so')
-                        lib_function = lib.main
+                        lib_function = lib.gestalt_interface
                         lib_function.argtypes = [c_char_p, c_char_p]
                         lib_function.restype = c_double
                         break
@@ -67,6 +67,8 @@ def test():
                 if data_size == "C" or data_size == "c":
                         size = "30000"
                         break
+                else:
+                        print('Not a valid input, please input either A, B, or C')
         possablematches = 0
         data = []
         startingdata = []
@@ -90,7 +92,6 @@ def test():
                         for person_two in startingdata:
                                 idtracker_two += 1
                                 person_two = person_two.encode('utf-8')
-                                print(person_one,person_two)
                                 if idtracker < idtracker_two:
                                         #print(idtracker, idtracker_two)
                                         result = lib_function(person_one, person_two)
