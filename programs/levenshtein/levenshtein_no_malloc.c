@@ -3,15 +3,17 @@
 
 #define MAX_LEN 1000  // Maximum string length
 
-int main(int argc, char* argv[]) {
+double levenshtien(char* word1, char* word2) {
     // Ensure valid arguments
+    /*
     if (argc < 3) {
         printf("Usage: %s <string1> <string2>\n", argv[0]);
         return 1;
     }
-
-    char *a = argv[1];
-    char *b = argv[2];
+    */
+    
+    char *a = word1;
+    char *b = word2;
     int len_a = strlen(a);
     int len_b = strlen(b);
 
@@ -46,5 +48,9 @@ int main(int argc, char* argv[]) {
     float similarity = 1.0f - ((float)levenshtein_distance / (len_a + len_b));
     printf("Similarity: %f\n", similarity);
 
-    return 0;
+    return similarity;
+}
+
+__attribute__((visibility("default"))) double levenshtien_interface(char* word1, char* word2) {
+    return levenshtien(word1, word2);
 }
