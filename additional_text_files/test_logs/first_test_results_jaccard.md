@@ -12,3 +12,10 @@
 - Results:
     * Number of Matches Found: 3548/(10000!)
     * Runtime: 02:35
+
+## Test 3:
+- Test File Entries 30000
+- Fuzziness: 0.8
+- Results:
+    * Number of Matches Found: / (30000!)
+    * Runtime: 

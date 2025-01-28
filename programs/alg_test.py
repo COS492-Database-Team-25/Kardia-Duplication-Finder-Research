@@ -57,7 +57,7 @@ data = []
 startingdata = []
 idtracker = 0
 idtracker_two = 0
-with open('../data/test_data_10000.csv', mode='r') as file:
+with open('../data/test_data_30000.csv', mode='r') as file:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
