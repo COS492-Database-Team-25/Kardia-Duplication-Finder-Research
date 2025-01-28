@@ -19,7 +19,7 @@ while True:
                 break
         elif temp == "g" or temp == "gestalt":
                 lib = CDLL('./gestaltlibrary.so')
-                lib_function = lib.gestalt
+                lib_function = lib.gestalt_interface
                 lib_function.argtypes = [c_char_p, c_char_p]
                 lib_function.restype = c_double
                 break
@@ -33,7 +33,7 @@ data = []
 startingdata = []
 idtracker = 0
 idtracker_two = 0
-with open('../../data/test_data_30000.csv', mode='r') as file:
+with open('../../data/test_data_10000.csv', mode='r') as file:
         reader = csv.reader(file)
         header = next(reader)
         for row in reader:
