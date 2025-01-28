@@ -90,6 +90,7 @@ def test():
                         for person_two in startingdata:
                                 idtracker_two += 1
                                 person_two = person_two.encode('utf-8')
+                                print(person_one,person_two)
                                 if idtracker < idtracker_two:
                                         #print(idtracker, idtracker_two)
                                         result = lib_function(person_one, person_two)
