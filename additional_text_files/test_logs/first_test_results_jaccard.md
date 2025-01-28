@@ -17,5 +17,5 @@
 - Test File Entries 30000
 - Fuzziness: 0.8
 - Results:
-    * Number of Matches Found: / (30000!)
-    * Runtime: 
+    * Number of Matches Found: 75067/ (30000!)
+    * Runtime: 14:15

@@ -1,8 +1,9 @@
 # How to Run alg_test.py
 alg_test.py is a bit clunky and there are some things you should know before trying to test our algorithms. Here's how you properly run the tester.
 
-**NOTE:** All tests were performed on Apple Silicon MacBooks, so this solution may only work with Apple Silicon products. If this does not work for your non-Apple Silicon-computer and you find a way to call the code successfully, please write it down on this file! It will help whoever is playing with this code later.
+**NOTE:** All tests were performed on Apple Silicon MacBooks, so this solution will only work with macOS products. If this does not work for your Windows or Linux computer and you find a way to call the code successfully, please write it down on this file! It will help whoever is playing with this code later.
 
+# macOS Instructions
 ## Step 1: Figure Out How to Call the Algorithm You Want to Test
 Each algorithm is able to be called through the alg_test.py function. But, you will have to specify how to do so. The code requires an input to run the code AFTER YOU COMPILE IT. It is important to know the inputs to call the function you want. 
 
@@ -19,7 +20,7 @@ We used GCC to compile the code into a library.so file the alg_test.py code can 
 **NOTE:** Please make sure you are typing this command in the right area in the repository. You should be in the programs directory, which is linked to testdata.
 
 If you don't want to go through all the work to just use the function, here's all four of the commands here:
-* l: gcc -shared -o levenshteinlibrary.so -fPIC levenshtein/levenshtein_distance.c -lm
+* l: gcc -shared -o levenshteinlibrary.so -fPIC levenshtein/levenshtein_no_malloc.c -lm
 * c: gcc -shared -o cosinelibrary.so -fPIC cosine/cosine_similarity.c -lm
 * j: gcc -shared -o jaccardlibrary.so -fPIC jaccard/jaccard_algorithm.c -lm
 * g/lcs: gcc -shared -o gestaltlibrary.so -fPIC gestalt/gestalt_pattern_matching.c -lm
@@ -33,7 +34,7 @@ After inputting this code into your terminal, you will be prompted with an input
 ## Step 4: Reading the Outputs
 The numbers that scroll through the screen are relatively unimportant to the results. But they do represent the similarity of two strings. These numbers only get printed if two strings' similarity count is over the similarity threshold set. The default threshold is 0.8.
 
-After the "tee hee" print message is the real results.
+After the "tee hee" print message are the real results.
 
 The top number is the number of matches found by the algorithm. These matches can be looked at in detail in the matches.csv file that is generated from the tester.
 
