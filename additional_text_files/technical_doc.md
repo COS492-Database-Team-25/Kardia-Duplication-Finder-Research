@@ -64,7 +64,7 @@ Function: Takes the cosine similarity of two given words 3 seperate times with d
 
 Dependencies: alg_test.py
 
-**gestalt_pttern_matching.c**
+**gestalt_pattern_matching.c**
 
 Function: Finds the most common subsequence of two strings.
 
