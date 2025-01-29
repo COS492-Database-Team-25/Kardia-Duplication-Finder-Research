@@ -82,37 +82,11 @@ Function: Finds the amount of insertions, deleations, or substitutions needed to
 
 Dependencies: alg_test.py
 
-### Sql Files (sql/)
-
-**Tentative to stay may not be needed anymore**
-
-## 4. File Interdependencies
-
-**main.py**
-
-Depends on:
-
-utils.py: For utility functions.
-
-config.py: For accessing configuration settings.
-
-test_main.py
-
-Depends on:
-
-main.py:For testing its functionalities.
-
-**test_utils.py**
-
-Depends on:
-
-utils.py: For testing its utilities.
-
-## 5. Version Control
+## 4. Version Control
 
 Ensure all changes to files are tracked using version control (e.g., Git). Each file should have clear commit messages detailing modifications.
 
-## 6. Best Practices
+## 5. Best Practices
 
 File Naming: Use descriptive names that reflect the file's purpose.
 
