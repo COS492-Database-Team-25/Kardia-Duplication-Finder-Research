@@ -24,10 +24,5 @@
     * .gitattributes - failed attempt to get GitHub LFS to store a large matches.csv file (did not work)
     * alg_test.py - main testing function - consult running_tester.md for information on how to run the tester
     * algorithm_test.c - attempt to code algorithm tester in C, needs major tweaks and debugging
-- **sql** - contains SQL queries which mock the duplicate-selection of LightSys's Kardia algorithm in the simplest way possible
-    * Phase1.sql - runs a very simple query to search for duplicates in p_partner within LightSys's test database
-    * phase_one_reddy.sql - basic search query, similar results to Phase1.sql
-    * phase_three_yeats.sql - an improved version of phase_one_reddy.sql that also searches in p_location within LightSys's test database
-    * Phase3_contact_info.sql - an improved version of phase_one_reddy.sql that also searches in p_contact_info within LightSys's test database
 - *.gitignore* - for ignoring staged changes
 - *README.md* - introduction to project
